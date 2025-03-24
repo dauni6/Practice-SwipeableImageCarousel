@@ -1,5 +1,31 @@
 원본 글 : https://proandroiddev.com/swipeable-image-carousel-with-smooth-animations-in-jetpack-compose-76eacdc89bfb
 
+lerp 함수의 정의는 다음과 같다.
+```
+/**
+ * Linearly interpolate between two [Dp]s.
+ *
+ * The [fraction] argument represents position on the timeline, with 0.0 meaning
+ * that the interpolation has not started, returning [start] (or something
+ * equivalent to [start]), 1.0 meaning that the interpolation has finished,
+ * returning [stop] (or something equivalent to [stop]), and values in between
+ * meaning that the interpolation is at the relevant point on the timeline
+ * between [start] and [stop]. The interpolation can be extrapolated beyond 0.0 and
+ * 1.0, so negative values and values greater than 1.0 are valid.
+ */
+/**
+ * 두 개의 [Dp] 사이를 선형 보간합니다.
+ * [fraction] 인자는 타임라인 상의 위치를 나타내며, 0.0은 보간이 시작되지 않았음을 의미하여
+ * [start] (또는 [start]와 동등한 값)을 반환하고, 1.0은 보간이 완료되었음을 의미하여
+ * [stop] (또는 [stop]과 동등한 값)을 반환합니다. 그 사이의 값들은 [start]와 [stop] 사이의 
+ * 타임라인 상의 해당 위치에 있음을 의미합니다. 보간은 0.0과 1.0을 벗어나서 외삽될 수 있으므로,
+ * 음수 값과 1.0보다 큰 값들도 유효합니다. */
+@Stable
+fun lerp(start: Dp, stop: Dp, fraction: Float): Dp {
+    return Dp(lerp(start.value, stop.value, fraction))
+}
+```
+
 lerp는 두 DP값 사이를 선형 보간한다. 
 선형 보간은 시작 값과 종료 값 사이의 중간 값을 주어진 분수(일반적으로 0과 1 사이의 값)에 따라 계산하며 공식은 다음과 같다.
 
